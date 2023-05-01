@@ -1,5 +1,4 @@
 import React, { FC, useEffect } from 'react';
-import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
 import { useDispatch, useStore } from 'react-redux';
 import { ReduxStoreWithManager } from 'app/providers/StoreProvider';
 import { StateSchemaKey } from 'app/providers/StoreProvider/config/StateSchema';
@@ -22,13 +21,13 @@ const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const dispatch = useDispatch();
     const store = useStore() as ReduxStoreWithManager;
     useEffect(() => {
-        Object.entries(reducers).forEach(([name, reducer]:ReducersListEntry) => {
-            store.reducerManager.add(name, reducer);
+        Object.entries(reducers).forEach(([name, reducer]) => {
+            store.reducerManager.add(name as StateSchemaKey, reducer);
             dispatch({ type: `@INIT ${name} reducer` });
         });
-        Object.entries(reducers).forEach(([name, reducer]:ReducersListEntry) => () => {
+        Object.entries(reducers).forEach(([name, reducer]) => () => {
             if (removeAfterUnmount) {
-                store.reducerManager.remove(name);
+                store.reducerManager.remove(name as StateSchemaKey);
                 dispatch({ type: `@DESTROY ${name} reducer` });
             }
         });

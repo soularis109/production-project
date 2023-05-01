@@ -1,10 +1,10 @@
 import { StateSchema } from 'app/providers/StoreProvider';
-import { getLoginIsLoading } from './getLoginIsLoading';
+import { getLoginIsLoading } from 'features/AuthByUsername/model/selectors/getLoginIsLoading/getLoginIsLoading';
 
 describe('getProfileIsLoading.test', () => {
     test('should return true', () => {
         const state: DeepPartial<StateSchema> = {
-            loginForm: {
+            profile: {
                 isLoading: true,
             },
         };
