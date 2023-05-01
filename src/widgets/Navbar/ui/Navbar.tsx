@@ -5,7 +5,6 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { LoginModal } from 'features/AuthByUsername';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAuthData, userActions } from 'entities/User';
-import { isOnline } from '@reduxjs/toolkit/dist/query/utils';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -53,14 +52,12 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             >
                 {t('Войти')}
             </Button>
-            {isAuthModal
-                && (
-                    <LoginModal
-                        isOpen={isAuthModal}
-                        onClose={onCloseModal}
-                    />
-                )}
-
+            {isAuthModal && (
+                <LoginModal
+                    isOpen={isAuthModal}
+                    onClose={onCloseModal}
+                />
+            )}
         </div>
     );
 });
