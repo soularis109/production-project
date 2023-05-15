@@ -12,7 +12,7 @@ import {
 } from '../../selectors/articlesPageSelectors';
 
 interface FetchArticlesListProps {
-    replace?:boolean
+    replace?: boolean;
 }
 
 export const fetchArticlesList = createAsyncThunk<
@@ -23,10 +23,10 @@ export const fetchArticlesList = createAsyncThunk<
         'articlesPage/fetchArticlesList',
         async (props, thunkApi) => {
             const { extra, rejectWithValue, getState } = thunkApi;
+            const limit = getArticlesPageLimit(getState());
             const sort = getArticlesPageSort(getState());
             const order = getArticlesPageOrder(getState());
             const search = getArticlesPageSearch(getState());
-            const limit = getArticlesPageLimit(getState());
             const page = getArticlesPageNum(getState());
             const type = getArticlesPageType(getState());
 
