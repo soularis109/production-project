@@ -1,10 +1,8 @@
 import axios from 'axios';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localstorage';
-import { config } from '@storybook/addon-actions';
 
 export const $api = axios.create({
     baseURL: __API__,
-
 });
 
 $api.interceptors.request.use((config) => {
